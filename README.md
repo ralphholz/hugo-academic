@@ -19,6 +19,8 @@ My changes are:
 
 6. Kicked out blog `post` and `project` as I did not need them. Just take the code from the original Academic theme if you want to reintroduce them.
 
+7. Adjusted font sizes in CSS.
+
 # The original Hugo academic
 
 The remainder of this page is an adjusted version of the Academic theme for
