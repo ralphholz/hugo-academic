@@ -1,4 +1,8 @@
 <ul class="list-unstyled">
+    {{ $mailto := .Site.Params.emailmailto }}
+    {{ $first := .Site.Params.emailfirst }}
+    {{ $last := .Site.Params.emaillast }}
+    {{ $domain:= .Site.Params.emaildomain}}
 
     {{ with .Site.Params.phone }}
     <li>
@@ -17,16 +21,32 @@
         {{ if and (isset $.Site.Params.contact "autolink") (eq $.Site.Params.contact.autolink false) }}
         <span>{{ . }}</span>
         {{ else }}
-        <span><a href="mailto:{{ . }}">{{ . }}</a></span>
+           <noscript>Dear users of non-JavaScript enabled browsers: I hide my email address from harvesters with a combination of URL encoding and JS. If you are reading this, you are probably very familiar with the topic. You can contact me at FIRSTNAME DOT LASTNAME AT SYDNEY DOT EDU DOT AU. Sorry for this inconvenience.</noscript>
+           <script>
+                var mailto = {{ printf "'%s'" $mailto | safeJS }};
+                var emailfirst = {{ printf "'%s'" $first | safeJS }};
+                var emaillast = {{ printf "'%s'" $last | safeJS }};
+                var emaildomain= {{ printf "'%s'" $domain | safeJS }};
+                document.write('<span><a href="' + mailto + emailfirst + emaillast + emaildomain + '">' + emailfirst + emaillast + emaildomain + '</a></span>');
+           </script>
         {{ end }}
     </li>
     {{ end }}
-
-    {{ with .Site.Params.address }}
+    <li>
+        <i class="fa fa-lock fa-fw" aria-hidden="true"></i>
+        <span>
+        <a href="{{ .Site.Params.keybase }}">OpenPGP: {{ .Site.Params.gpg }}</a>
+        </span>
     <li>
         <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
-        <span>{{ . }}</span>
+        <span>
+        {{ with .Site.Params.maplink }}
+        <a href="{{ . }}">
+        {{ end }}
+        {{ with .Site.Params.address }}
+        {{ . }}</a>
+        </span>
+        {{ end }}
     </li>
-    {{ end }}
 
 </ul>

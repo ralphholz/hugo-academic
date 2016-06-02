@@ -1,69 +1,58 @@
-<div class="row" itemprop="author" itemscope itemtype="http://schema.org/Person">
+<div class="row">
     <div class="col-xs-12 col-md-4">
         <div id="profile">
 
-            <div class="portrait" itemprop="image"></div>
+            <div class="portrait"></div>
 
-            <div class="portrait-title">
+            <div class="portrait-title" itemprop="author" itemscope itemtype="http://schema.org/Person">
                 <h2 itemprop="name">{{ .Site.Params.name }}</h2>
                 <h3 itemprop="jobTitle">{{ .Site.Params.role }}</h3>
                 <h3 itemprop="worksFor">{{ .Site.Params.organization }}</h3>
+                    
             </div>
-
+                       
             <ul class="list-inline social-icon">
+                {{ $mailto := .Site.Params.emailmailto }}
+                {{ $first := .Site.Params.emailfirst }}
+                {{ $last := .Site.Params.emaillast }}
+                {{ $domain:= .Site.Params.emaildomain}}
                 {{ range .Site.Params.social }}
                 <li>
-                    <a href="{{ .link }}">
-                    {{ if eq .icon_pack "ai" }}
-                        <i class="ai ai-{{ .icon }} big-icon" aria-hidden="true"></i>
+                    {{ if eq .type "email" }}
+                       <noscript>Dear users of non-JavaScript enabled browsers: I hide my email address from harvesters with a combination of URL encoding and JS. If you are reading this, you are probably very familiar with the topic. You can contact me at FIRSTNAME DOT LASTNAME AT SYDNEY DOT EDU DOT AU. Sorry for this inconvenience.</noscript>
+                       <script>
+                            var mailto = {{ printf "'%s'" $mailto | safeJS }};
+                            var emailfirst = {{ printf "'%s'" $first | safeJS }};
+                            var emaillast = {{ printf "'%s'" $last | safeJS }};
+                            var emaildomain= {{ printf "'%s'" $domain | safeJS }};
+                            document.write('<a href="' + mailto + emailfirst + emaillast + emaildomain + '">');
+                       </script>
+                        {{ if eq .icon_pack "ai" }}
+                            <i class="ai ai-{{ .icon }} big-icon" aria-hidden="true"></i>
+                        {{ else }}
+                            <i class="fa fa-{{ .icon }} big-icon" aria-hidden="true"></i>
+                        {{ end }}
                     {{ else }}
-                        <i class="fa fa-{{ .icon }} big-icon" aria-hidden="true"></i>
+                        <a href="{{ .link }}">
+                        {{ if eq .icon_pack "ai" }}
+                            <i class="ai ai-{{ .icon }} big-icon" aria-hidden="true"></i>
+                        {{ else }}
+                            <i class="fa fa-{{ .icon }} big-icon" aria-hidden="true"></i>
+                        {{ end }}
                     {{ end }}
                     </a>
                 </li>
                 {{ end }}
             </ul>
-
-        </div>
+            </div>
     </div>
 
     <div class="visible-sm visible-xs"></div>
 
-    <div class="col-xs-12 col-md-8" itemprop="description">
+    <div class="col-xs-12 col-md-8">
 
         {{ .Content }}
 
-        <div class="row">
-
-            {{ if isset .Site.Params "interests" }}
-            <div class="col-md-5">
-                <h3>Interests</h3>
-                <ul>
-                    {{ range .Site.Params.interests }}
-                    <li>{{ . }}</li>
-                    {{ end }}
-                </ul>
-            </div>
-            {{ end }}
-
-            {{ if isset .Site.Params "education" }}
-            <div class="col-md-7">
-                <h3>Education</h3>
-                <ul class="ul-edu fa-ul">
-                    {{ range .Site.Params.education }}
-                    <li>
-                        <i class="fa-li fa fa-graduation-cap"></i>
-                        <div class="description">
-                            <p class="course">{{ .course }}, {{ .year }}</p>
-                            <p class="institution">{{ .institution }}</p>
-                        </div>
-                    </li>
-                    {{ end }}
-                </ul>
-            </div>
-            {{ end }}
-
-        </div>
 
     </div>
 </div>
