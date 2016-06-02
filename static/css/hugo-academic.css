@@ -7,7 +7,9 @@
  *  Fonts
  **************************************************/
 
-@import url(//fonts.googleapis.com/css?family=Lato:400,700|Merriweather|Roboto+Mono);
+@import url(//fonts.googleapis.com/css?family=Lato:400,700);
+@import url(//fonts.googleapis.com/css?family=Roboto+Mono);
+@import url(//fonts.googleapis.com/css?family=Merriweather);
 
 /*************************************************
  *  Core
@@ -55,13 +57,29 @@ h1, h2, h3, h4, h5, h6, .navbar-default {
 
 h1 {
     margin-bottom: 21px;
-    font-size: 48px;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+
+h2 {
+    margin-bottom: 21px;
+    font-size: 24px;
+    font-weight: 700;
 }
 
 h3 {
     margin-bottom: 11px;
+    font-size: 24px;
     font-weight: 700;
 }
+
+h4 {
+    margin-bottom: 11px;
+    font-size: 18px;
+    font-weight: 400;
+}
+
 
 a, a:visited, h3.post-title a:hover {
     color: #0095eb;
@@ -80,19 +98,8 @@ h3.post-title a {
     -webkit-transition: color 0.6s ease;
 }
 
-img, video {
-    height: auto;
-    max-width: 100%;
-    display: block;
-}
-
 pre, code {
     font-family: 'Roboto Mono', 'Courier New', 'Courier', monospace;
-}
-
-pre {
-    margin: 0 0 1.5rem;
-    overflow: auto;
 }
 
 .space-below {
@@ -146,56 +153,11 @@ footer p {
 }
 
 /*************************************************
- *  Sharing
- **************************************************/
-
-.share-box {
-    float: right;
-}
-
-ul.share {
-    list-style: none;
-    text-align: right;
-    margin: 0;
-    padding: 0;
-}
-
-ul.share li {
-    display: inline-block;
-}
-
-ul.share li .fa {
-    display: inline-block;
-    width: 35px;
-    height: 35px;
-    line-height: 37px;
-    font-size: 18px;
-    text-align: center;
-    transition: all 150ms ease-in-out;
-    color: #fff;
-}
-
-ul.share li a {
-    background-color: #b5c6ce;
-    display: inline-block;
-    border-radius: 50%;
-    text-decoration: none !important;
-}
-
-ul.share li:hover .fa {
-    -moz-transform: scale(1.4);
-    -webkit-transform: scale(1.4);
-    transform: scale(1.4)
-}
-
-/*************************************************
  *  Blog Articles
  **************************************************/
 
 .article-metadata {
     margin-bottom: 20px;
-    line-height: 37px; /* Match share bar line height. */
-    font-size: 14px;
 }
 
 .article-list-item {
@@ -215,29 +177,23 @@ ul.share li:hover .fa {
     color: #888;
 }
 
-.article-style img, .article-style video {
-    box-shadow: 0 0 1px #edefed;
-    -moz-box-shadow: 0 0 1px #edefed;
-    -webkit-box-shadow: 0 0 1px #edefed;
-    box-shadow: 1px 1px 0px #edefed,-1px -1px 0px #edefed,1px -1px 0px #edefed,-1px 1px 0px #edefed; */
-    -moz-box-shadow: 1px 1px 0px #edefed,-1px -1px 0px #edefed,1px -1px 0px #edefed,-1px 1px 0px #edefed;
-    -webkit-box-shadow: 1px 1px 0px #edefed,-1px -1px 0px #edefed,1px -1px 0px #edefed,-1px 1px 0px #edefed;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    padding-left: 0;
-    padding-right: 0;
+ul.share {
+    list-style: none;
+    float: right;
 }
 
-.article-style figure {
-    margin-top: 60px;
-    margin-bottom: 60px;
+ul.share li {
+    margin-right: 3px;
+    margin-left: 3px;
+    display: inline-block;
 }
 
-.article-style figure img {
-    margin-top: 0;
-    margin-bottom: 0;
+ul.share li:last-child {
+    margin-right: 0px;
+}
+
+ul.share li i {
+    font-size: 1.75rem;
 }
 
 #comments {
@@ -260,33 +216,6 @@ ul.share li:hover .fa {
 
 .citation_authors {
     font-style: italic;
-}
-
-/*************************************************
- *  Projects
- **************************************************/
-
-section#projects.home-section li {
-    margin-bottom: 20px;
-}
-
-section#projects.home-section li:last-of-type {
-    margin-bottom: 0;
-}
-
-section#projects.home-section .project-title {
-    display: inline-block;
-    margin-bottom: 6px;
-}
-
-section#projects.home-section .project-summary {
-    font-size: 16px;
-    margin-bottom: 6px;
-}
-
-section#projects.home-section .project-tags {
-    font-size: 14px;
-    color: #9c9c9c;
 }
 
 /*************************************************
