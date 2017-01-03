@@ -1,33 +1,58 @@
 {{ partial "header.html" . }}
 {{ partial "navbar.html" . }}
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Publications</h1>
 
-            {{ range .Data.Pages.GroupByDate "2006" }}
-            <div class="row" id="pub_list">
-                <div class="col-md-2">
-                    <h3>{{ .Key }}</h3>
-                </div>
-                <div class="col-md-10">
-                    <ul class="compact fa-ul">
-
-                        {{ range .Pages.ByDate.Reverse }}
-                        <li>
-                            <i class="fa-li fa fa-file-text-o"  aria-hidden="true" style="color:#03396c;font-size:80%;padding-top:6px;"></i>
-                            {{ .Title }}
-                            <p>{{ partial "publication_links" (dict "content" . "is_list" 1) }}</p>
-                        </li>
-                        {{ end }}
-
-                    </ul>
-                </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <h2>All publications</h2>
+                <p><a href="#proceedings">Conferences and workshops <i class="fa fa-angle-double-right" style="padding-left: 5px;"></i></a></p>
+                <p><a href="#journals">Journals <i class="fa fa-angle-double-right" style="padding-left: 5px;"></i></a></p>
+                <p><a href="#thesiswork">Thesis work <i class="fa fa-angle-double-right" style="padding-left: 5px;"></i></a></p>
+                <p><a href="#rfc">RFCs <i class="fa fa-angle-double-right" style="padding-left: 5px;"></i></a></p>
             </div>
-            {{ end }}
+            <div class="col-xs-12 col-md-8">
+                <a name="proceedings"><h4>Proceedings of peer-reviewed conferences and workshops</h4></a>
+                <ul class="fa-ul">
+                    {{ range $page := where .Data.Pages ".Params.entrytype" "inproceedings"}}
+                    <li>
+                        <i class="fa-li fa fa-file-pdf-o pub-icon" aria-hidden="true"></i>
+                        <span style="padding-right: 8px"><a href="{{ $page.Params.url_pdf | absURL}}">{{ .Title }}</a>. {{ delimit $page.Params.authors ", " ", and " }}. <i>{{ $page.Params.publication }}</i>. {{ if isset $page.Params "location" }}{{ printf "%s, " $page.Params.location }}{{ else }}{{ $page.Params.location }}{{ end }}{{ $page.Params.time }}.</span>{{ partial "publication_links" (dict "content" $page "is_list" 1) }}
+                    </li>
+                    {{ end }}
+                </ul>
+                
+                <a name="journals"><h4>Journals</h4></a>
+                <ul class="fa-ul">
+                    {{ range $page := where .Data.Pages ".Params.entrytype" "article"}}
+                    <li>
+                        <i class="fa-li fa fa-file-pdf-o pub-icon" aria-hidden="true"></i>
+                        <span style="padding-right: 8px"><a href="{{ $page.Params.url_pdf | absURL}}">{{ .Title }}</a>. {{ delimit $page.Params.authors ", " ", and " }}. <i>{{ $page.Params.publication }}</i>. {{ if isset $page.Params "location" }}{{ printf "%s, " $page.Params.location }}{{ else }}{{ $page.Params.location }}{{ end }}{{ $page.Params.time }}.</span>{{ partial "publication_links" (dict "content" $page "is_list" 1) }}
+                    </li>
+                    {{ end }}
+                </ul>
+                <a name="thesiswork"><h4>Thesis work</h4></a>
 
+                <ul class="fa-ul">
+                    {{ range $page := where .Data.Pages ".Params.entrytype" "phdthesis"}}
+                    <li>
+                        <i class="fa-li fa fa-file-pdf-o pub-icon" aria-hidden="true"></i>
+                        <span style="padding-right: 8px"><a href="{{ $page.Params.url_pdf | absURL}}">{{ .Title }}</a>. {{ delimit $page.Params.authors ", " ", and " }}. <i>{{ $page.Params.publication }}</i>. {{ if isset $page.Params "location" }}{{ printf "%s, " $page.Params.location }}{{ else }}{{ $page.Params.location }}{{ end }}{{ $page.Params.time }}.</span>{{ partial "publication_links" (dict "content" $page "is_list" 1) }}
+                    </li>
+                    {{ end }}
+                </ul>
+
+                <a name="rfc"><h4>RFCs</h4></a>
+                <ul class="fa-ul">
+                    {{ range $page := where .Data.Pages ".Params.entrytype" "RFC"}}
+                    <li>
+                        <i class="fa-li fa fa-file-pdf-o pub-icon" aria-hidden="true"></i>
+                        <span style="padding-right: 8px"><a href="{{ $page.Params.rfc_link | absURL}}">{{ .Title }}</a>. {{ delimit $page.Params.authors ", " ", and " }}. <i>{{ $page.Params.publication }}</i>. {{ if isset $page.Params "location" }}{{ printf "%s, " $page.Params.location }}{{ else }}{{ $page.Params.location }}{{ end }}{{ $page.Params.time }}.</span>{{ partial "publication_links" (dict "content" $page "is_list" 1) }}
+                    </li>
+                    {{ end }}
+                </ul>
+
+            </div>
         </div>
-    </div>
 
 </div>
 {{ partial "footer_container.html" . }}

@@ -39,14 +39,11 @@
         </span>
     <li>
         <i class="fa fa-map-marker fa-fw" aria-hidden="true"></i>
-        <span>
-        {{ with .Site.Params.maplink }}
-        <a href="{{ . }}">
-        {{ end }}
-        {{ with .Site.Params.address }}
-        {{ . }}</a>
-        </span>
-        {{ end }}
+        <span><a href="{{ .Site.Params.maplink }}">{{ .Site.Params.address }}</a></span>
+    </li>
+    <li>
+        <i class="fa fa-anchor fa-fw" aria-hidden="true"></i>
+        <span><a href="{{ .Site.Params.piratelink }}">Location on the arrrrr! map</a></span>
     </li>
 
 </ul>
