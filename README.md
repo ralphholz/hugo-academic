@@ -1,8 +1,8 @@
 # A modified version of Hugo Academic
 
-This is an adapted version of gcushen's Academic theme for
-[Hugo](https://gohugo.io). I made some edits to suit it to my tastes. The
-license is the same (MIT). 
+This is an adapted version of [gcushen's Academic
+theme](https://github.com/gcushen/hugo-academic) for [Hugo](https://gohugo.io).
+I made some edits to suit it to my tastes. The license is the same (MIT). 
 
 My changes are:
 
